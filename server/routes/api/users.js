@@ -2,7 +2,7 @@ const express = require('express');
 let router = express.Router();
 require('dotenv').config();
 const { checkLoggedIn } = require('../../middleware/auth');
-const { grantAccess } = require('../../middleware/roles')
+const { grantAccess } = require('../../middleware/roles');
 const { User } = require('../../models/user_model');
 
 router.route("/register")
