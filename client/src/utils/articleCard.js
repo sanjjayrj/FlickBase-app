@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-const ArticleCard = () => {
+const ArticleCard = ({article}) => {
     return (
         <Card>
             <CardMedia
@@ -20,21 +20,18 @@ const ArticleCard = () => {
                 title="something"
             />
             <CardContent>
-                <Typography variant="h5">
-                    something
+                <Typography gutterBottom variant="h5" component="h2">
+                    { article.title }
                 </Typography>
-                <Typography variant="body" component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
+                <Typography variant="body2" component="p">
+                    {article.excerpt}
                 </Typography>
             </CardContent>
             <CardActions>
                 <IconButton>
                     <FavoriteIcon />
                     <Button size="small" color="primary" component={RouterLink}
-                        to={`article/id`}>
+                        to={`article/${article._id}`}>
                         View article
                     </Button>
                 </IconButton>
