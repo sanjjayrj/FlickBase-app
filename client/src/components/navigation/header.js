@@ -3,35 +3,43 @@ import { Link, withRouter } from 'react-router-dom';
 import SideDrawer from './sideNavigation';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { clearNotifications } from '../../store/actions/index';
+import { clearNotification } from '../../store/actions/index';
+import { signOut } from '../../store/actions/users_actions';
 import { showToast } from '../../utils/tools';
 
 const Header = (props) => {
     const notifications = useSelector(state => state.notifications)
     const dispatch = useDispatch();
 
+    const signOutUser = () => {
+        dispatch(signOut())
+        props.history.push('/');
+    }
+
+
     useEffect(() => {
-        if(notifications && notifications.error){
+        if (notifications && notifications.error) {
             const msg = notifications.msg ? notifications.msg : 'Error';
-            showToast('ERROR', msg)
-            dispatch( clearNotifications() )
+            showToast('ERROR', msg);
+            dispatch(clearNotification())
         }
         if (notifications && notifications.success) {
-            const msg = notifications.msg ? notifications.msg : 'Success';
-            showToast('SUCCESS', msg)
-            dispatch( clearNotifications() )
+            const msg = notifications.msg ? notifications.msg : 'Error';
+            showToast('SUCCESS', msg);
+            dispatch(clearNotification())
         }
-    },[notifications, dispatch])
+    }, [notifications, dispatch])
 
-    return(
+
+    return (
         <>
             <nav className="navbar fixed-top">
-                <Link style={{fontFamily:'Fredoka One'}} to='/'
-                className="navbar-brand d-flex align-items-center"
+                <Link style={{ fontFamily: 'Fredoka One' }} to="/"
+                    className="navbar-brand d-flex align-items-center"
                 >
                     FlickBase
                 </Link>
-                <SideDrawer/>
+                <SideDrawer signOutUser={signOutUser} />
             </nav>
         </>
     )

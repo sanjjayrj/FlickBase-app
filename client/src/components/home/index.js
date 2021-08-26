@@ -5,6 +5,7 @@ import ArticleCard from '../../utils/articleCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArticles } from '../../store/actions/article_actions';
 
+
 const initialSort = { sortBy: "_id", order: "desc", limit: 8, skip: 0 };
 
 const Home = () => {
@@ -12,17 +13,20 @@ const Home = () => {
         (state, newState) => ({ ...state, ...newState }),
         initialSort
     );
-    const articles = useSelector(state => state.articles)
+    const articles = useSelector(state => state.articles);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // trigger first time
+        // trigger only on first render
         if (articles && !articles.articles) {
-            ///dispatch
+            ///dispatch 
             dispatch(getArticles(initialSort))
         }
-    }, [dispatch, articles])
-    
+    }, [dispatch, articles]);
+
+
+
+
     return (
         <div>
             <div>
@@ -44,7 +48,7 @@ const Home = () => {
                     setSort({ skip: skip })
                 }}
             >
-                Load More...
+                Load more
             </button>
         </div>
     )

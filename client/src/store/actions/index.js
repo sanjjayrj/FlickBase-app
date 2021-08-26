@@ -2,33 +2,46 @@ import {
     GET_ARTICLES,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
-    CLEAR_NOTIFICATIONS
+    CLEAR_NOTIFICATION,
+    AUTH_USER,
+    SIGN_OUT
 } from '../types';
 
-/////////////articles///////////////////////
+/////////// articles //////////////
 
 export const getArticles = (articles) => ({
     type: GET_ARTICLES,
     payload: articles
-})
+});
 
-///////////////notifications///////////////
+
+/////// notification /////////////
 
 export const errorGlobal = (msg) => ({
     type: ERROR_GLOBAL,
     payload: msg
-})
+});
 
 export const successGlobal = (msg) => ({
     type: SUCCESS_GLOBAL,
     payload: msg
-})
+});
 
-export const clearNotifications = () => {
-    return(dispatch) => {
+export const clearNotification = () => {
+    return (dispatch) => {
         dispatch({
-            type: CLEAR_NOTIFICATIONS,
-            payload: {}
+            type: CLEAR_NOTIFICATION
         })
     }
 }
+
+/////// notification /////////////
+
+export const authUser = (user) => ({
+    type: AUTH_USER,
+    payload: user
+});
+
+export const signOut = () => ({
+    type: SIGN_OUT
+})
