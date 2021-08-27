@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 const MainLayout = (props) => {
     const site = useSelector(state => state.site);
-
     return(
         <Container className={`app_container mb-5 ${site.layout}`}>
             {props.children}

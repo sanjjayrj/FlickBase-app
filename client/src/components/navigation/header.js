@@ -9,7 +9,7 @@ import { appLayout } from '../../store/actions/site_actions';
 import { showToast } from '../../utils/tools';
 
 const Header = (props) => {
-    const [layout,setLayout] = useState('')
+    const [layout, setLayout] = useState('');
     const notifications = useSelector(state => state.notifications);
     const users = useSelector(state => state.users);
     const dispatch = useDispatch();
@@ -19,16 +19,17 @@ const Header = (props) => {
         props.history.push('/');
     }
 
-    useEffect(()=>{
-        let pathArray = props.location.pathname.split('/')
-        if(pathArray[1] === 'dashboard'){
+    useEffect(() => {
+        let pathArray = props.location.pathname.split('/');
+        if (pathArray[1] === 'dashboard') {
             setLayout('dash_layout');
             dispatch(appLayout('dash_layout'))
         } else {
-            setLayout('')
+            setLayout('');
             dispatch(appLayout(''))
         }
-    },[props.location.pathname, dispatch])
+    }, [props.location.pathname, dispatch])
+
 
     useEffect(() => {
         if (notifications && notifications.error) {
@@ -52,7 +53,7 @@ const Header = (props) => {
                 >
                     FlickBase
                 </Link>
-                <SideDrawer users = {users} signOutUser={signOutUser} />
+                <SideDrawer users={users} signOutUser={signOutUser} />
             </nav>
         </>
     )

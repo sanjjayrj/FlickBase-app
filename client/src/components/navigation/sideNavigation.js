@@ -43,12 +43,13 @@ const SideDrawer = ({ users, signOutUser }) => {
                         <ListItemText primary="Contact" />
                     </ListItem>
 
+
                     {!users.auth ?
                         <ListItem button component={RouterLink} to="/auth" onClick={() => setState(false)}>
                             <ListItemIcon><VpnKeyIcon /></ListItemIcon>
                             <ListItemText primary="Sign in" />
                         </ListItem>
-                        : 
+                        :
                         <ListItem button onClick={() => {
                             signOutUser()
                             setState(false)
@@ -57,8 +58,10 @@ const SideDrawer = ({ users, signOutUser }) => {
                             <ListItemText primary="Sign out" />
                         </ListItem>
                     }
+
+
                 </List>
-                { users.auth?
+                {users.auth ?
                     <>
                         <Divider />
                         <List>
@@ -68,7 +71,7 @@ const SideDrawer = ({ users, signOutUser }) => {
                             </ListItem>
                         </List>
                     </>
-                :null}
+                    : null}
             </Drawer>
         </>
     )

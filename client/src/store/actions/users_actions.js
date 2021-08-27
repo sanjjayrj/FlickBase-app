@@ -42,7 +42,7 @@ export const signInUser = (values) => {
 export const isAuthUser = () => {
     return async (dispatch) => {
         try {
-            if (!getTokenCookie){
+            if (!getTokenCookie()) {
                 throw new Error();
             }
 
