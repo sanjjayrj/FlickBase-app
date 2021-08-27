@@ -1,7 +1,9 @@
 import React,{ useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArticle } from '../../../store/actions/article_actions'
+import { getArticle } from '../../../store/actions/article_actions';
+import { clearCurrentArticle } from '../../../store/actions/index';
 import Loader from '../../../utils/loader';
+import ScoreCard from '../../../utils/scoreCard';
 
 const Article = (props) => {
     const { current } = useSelector( state => state.articles );
@@ -11,6 +13,13 @@ const Article = (props) => {
         /// props.match.params.id
         dispatch(getArticle(props.match.params.id))
     },[dispatch, props.match.params.id])
+
+    useEffect(()=>{
+        return () => {
+            dispatch(clearCurrentArticle())
+        }
+    },[dispatch])
+
     return(
         <>
             { current ?
@@ -29,6 +38,7 @@ const Article = (props) => {
                         }>
                         </div>
                     </div>
+                    <ScoreCard current={current}/>
                 </div>
             :
                 <Loader/>

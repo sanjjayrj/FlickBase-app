@@ -1,6 +1,7 @@
 import {
     GET_ARTICLES,
     GET_ARTICLE,
+    CLEAR_CURRENT_ARTICLE,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
@@ -19,6 +20,10 @@ export const getArticles = (articles) => ({
 export const getArticle = (article) => ({
     type: GET_ARTICLE,
     payload: article
+});
+
+export const clearCurrentArticle = () => ({
+    type: CLEAR_CURRENT_ARTICLE
 })
 
 /////// notification /////////////
