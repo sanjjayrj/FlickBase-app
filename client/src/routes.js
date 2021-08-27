@@ -10,6 +10,7 @@ import { isAuthUser } from './store/actions/users_actions';
 import Home from './components/home';
 import Header from './components/navigation/header';
 import Auth from './components/auth';
+import Dashboard from './components/dashboard';
 
 const Routes = () => {
     const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ const Routes = () => {
                 :
                 <MainLayout>
                     <Switch>
+                        <Route path="/dashboard" component={Dashboard}/>
                         <Route path="/auth" component={Auth} />
                         <Route path="/" component={Home} />
                     </Switch>
