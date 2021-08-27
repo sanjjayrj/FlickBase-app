@@ -1,14 +1,13 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { Redirect } from 'react-router-dom';
 
 const PreventAuthRoute = (props) => {
     const users = useSelector(state => state.users);
 
-    return(
+    return (
         <>
-            { users.auth ?
+            {users.auth ?
                 <Redirect to="/dashboard" />
                 :
                 props.children
