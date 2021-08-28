@@ -1,4 +1,5 @@
 import {
+    ADD_ARTICLE,
     GET_ARTICLES,
     GET_ARTICLE,
     CLEAR_CURRENT_ARTICLE,
@@ -11,6 +12,11 @@ import {
 } from '../types';
 
 /////////// articles //////////////
+
+export const addArticle = (article) => ({
+    type:ADD_ARTICLE,
+    payload: article
+})
 
 export const getArticles = (articles) => ({
     type: GET_ARTICLES,
