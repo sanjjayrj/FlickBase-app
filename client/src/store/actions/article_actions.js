@@ -45,3 +45,53 @@ export const addArticle = (article) => {
         }
     }
 }
+
+export const getPaginateArticles = (page=1,limit=5) => {
+    return async(dispatch)=>{
+        try{
+            const request = await axios.post(`/api/articles/admin/paginate`, {
+                page,
+                limit,
+            }, getAuthHeader());
+
+            dispatch(articles.getPaginateArticle(request.data))
+        } catch(error) {
+            dispatch(articles.errorGlobal(error.response.data.message))
+
+        }
+    }
+}
+
+export const changeStatusArticle = (status, _id) => {
+    return async(dispatch, getState) => {
+        try{
+            const article = await axios.patch(`/api/articles/admin/${_id}`,{
+                status
+            }, getAuthHeader())
+
+            let art = article.data;
+            let state = getState().articles.adminArticles.docs; /// previous state
+            let position = state.findIndex( art => art._id === _id) /// find doc position
+            state[position] = art;
+
+            dispatch(articles.updateArticleStatus(state));
+            dispatch(articles.successGlobal('cool'))
+        } catch(error) {
+            dispatch(articles.errorGlobal(error.response.data.message));
+        }
+    }
+}
+
+export const removeArticle = (id) => {
+    return async (dispatch) => {
+        try{
+            await axios.delete(`/api/articles/admin/${id}`, getAuthHeader());
+            
+            dispatch(articles.removeArticle())
+            dispatch(articles.successGlobal('Deleted successfully'))
+        } catch(error) {
+            dispatch(articles.errorGlobal(error.response.data.message))
+
+        }
+    }
+}

@@ -2,10 +2,13 @@ import {
     ADD_ARTICLE,
     GET_ARTICLES,
     GET_ARTICLE,
+    GET_ADMIN_ARTICLES,
+    UPDATE_ARTICLE_STATUS,
     CLEAR_CURRENT_ARTICLE,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
+    REMOVE_ARTICLE,
     AUTH_USER,
     SIGN_OUT,
     SITE_LAYOUT
@@ -27,6 +30,16 @@ export const getArticle = (article) => ({
     type: GET_ARTICLE,
     payload: article
 });
+
+export const getPaginateArticle = (articles) => ({
+    type: GET_ADMIN_ARTICLES,
+    payload: articles
+})
+
+export const updateArticleStatus = (articleS) => ({
+    type: UPDATE_ARTICLE_STATUS,
+    payload: articleS
+})
 
 export const clearCurrentArticle = () => ({
     type: CLEAR_CURRENT_ARTICLE
@@ -51,6 +64,10 @@ export const clearNotification = () => {
         })
     }
 }
+
+export const removeArticle = () => ({
+    type: REMOVE_ARTICLE
+})
 
 /////// notification /////////////
 

@@ -3,13 +3,16 @@
 export const ADD_ARTICLE = 'add_article';
 export const GET_ARTICLES = 'get_articles';
 export const GET_ARTICLE = 'get_article';
+export const GET_ADMIN_ARTICLES = 'get_admin_articles';
+export const UPDATE_ARTICLE_STATUS = 'update_article_status';
 export const CLEAR_CURRENT_ARTICLE = 'clear_current_article'
 
 
 /// notifications
 export const ERROR_GLOBAL = 'error_global';
 export const SUCCESS_GLOBAL = 'success_global';
-export const CLEAR_NOTIFICATION = 'clear_notification'
+export const CLEAR_NOTIFICATION = 'clear_notification';
+export const REMOVE_ARTICLE = 'remove_article';
 
 
 /// users 

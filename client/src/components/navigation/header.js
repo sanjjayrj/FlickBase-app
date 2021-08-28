@@ -38,7 +38,7 @@ const Header = (props) => {
             dispatch(clearNotification())
         }
         if (notifications && notifications.success) {
-            const msg = notifications.msg ? notifications.msg : 'Error';
+            const msg = notifications.msg ? notifications.msg : 'Success';
             showToast('SUCCESS', msg);
             dispatch(clearNotification())
         }
