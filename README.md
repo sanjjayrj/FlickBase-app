@@ -43,7 +43,7 @@ or
 localhost:3000
 ```
 
-Hosted website can be found at git_url
+Hosted website can be found at [git_url]
 
    [git_url]: <https://test-first-appx.herokuapp.com/>
    [node.js]: <http://nodejs.org>
