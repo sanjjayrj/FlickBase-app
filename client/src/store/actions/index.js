@@ -11,6 +11,7 @@ import {
     REMOVE_ARTICLE,
     AUTH_USER,
     SIGN_OUT,
+    CHANGE_USER_EMAIL,
     SITE_LAYOUT
 } from '../types';
 
@@ -69,7 +70,7 @@ export const removeArticle = () => ({
     type: REMOVE_ARTICLE
 })
 
-/////// notification /////////////
+/////// users //////
 
 export const authUser = (user) => ({
     type: AUTH_USER,
@@ -78,6 +79,11 @@ export const authUser = (user) => ({
 
 export const signOut = () => ({
     type: SIGN_OUT
+});
+
+export const changeUserEmail = (email) => ({
+    type: CHANGE_USER_EMAIL,
+    payload: email
 })
 
 /////////////site////////////////
