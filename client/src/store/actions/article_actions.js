@@ -95,3 +95,28 @@ export const removeArticle = (id) => {
         }
     }
 }
+
+export const getAdminArticle = (id) => {
+    return async(dispatch) => {
+        try{
+            const request = await axios.get(`/api/articles/admin/${id}`, getAuthHeader());
+            dispatch(articles.getArticle(request.data))
+        } catch(error) {
+            dispatch(articles.getArticle(error.response.data.message))
+
+        }
+    }
+}
+
+export const updateArticle = (article, id) => {
+    return async ( dispatch) => {
+        try{
+            const newArticle = await axios.patch(`/api/articles/admin/${id}`,
+            article, getAuthHeader());
+            dispatch(articles.getArticle(newArticle.data));
+            dispatch(articles.successGlobal('Successfully, updated article'))
+        } catch(error) {
+            dispatch(articles.errorGlobal('Error updating article!'))
+        }
+    }
+}
