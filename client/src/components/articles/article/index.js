@@ -8,6 +8,7 @@ import ScoreCard from '../../../utils/scoreCard';
 const Article = (props) => {
     const { current } = useSelector( state => state.articles );
     const dispatch = useDispatch();
+    console.log(current);
 
     useEffect(()=>{
         /// props.match.params.id
@@ -24,12 +25,19 @@ const Article = (props) => {
         <>
             { current ?
                 <div className="article_container">
-                    <div
+                    {/* <div
                         style={{
-                            background: `url(${current.bf_image})`
+                            backgroundImage: `url("${current.bf_image}")`
                         }}
                         className="image"
                     >
+                    </div> */}
+                    <div
+                        className="image"
+                    >
+                        <img
+                            src = {`url(${current.bf_image}.val())`}
+                        />
                     </div>
                     <h1>{current.title}</h1>
                     <div className="mt-3 content">
