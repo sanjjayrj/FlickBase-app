@@ -78,6 +78,16 @@ const AddArticle = (props) => {
                             {...errorHelper(formik, 'title')}
                         />
                     </div>
+                    <div className="form-group">
+                        <TextField
+                            style={{ width: '100%'}}
+                            name="bg_image"
+                            label="Enter movie poster url"
+                            variant="outlined"
+                            {...formik.getFieldProps('bg_image')}
+                            {...errorHelper(formik, 'bg_image')}
+                        />
+                    </div>
 
                     <div className="form-group">
                         <WYSIWYG

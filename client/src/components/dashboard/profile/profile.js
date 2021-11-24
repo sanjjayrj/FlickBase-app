@@ -5,6 +5,7 @@ import { updateUserProfile } from '../../../store/actions/users_actions'
 
 import {
     TextField,
+    // eslint-disable-next-line
     Divider,
     Button
 } from '@material-ui/core';

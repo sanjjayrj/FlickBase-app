@@ -26,7 +26,7 @@ const Article = (props) => {
                 <div className="article_container">
                     <div
                         style={{
-                            background: `url(https://picsum.photos/1920/1080)`
+                            background: `url(${current.bf_image})`
                         }}
                         className="image"
                     >

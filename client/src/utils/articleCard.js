@@ -16,7 +16,7 @@ const ArticleCard = ({article}) => {
         <Card>
             <CardMedia
                 style={{ height: 0, paddingTop: '56.25%' }}
-                image="https://picsum.photos/200"
+                image = {article.bg_image}
                 title="something"
             />
             <CardContent>

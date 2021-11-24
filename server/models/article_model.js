@@ -9,6 +9,10 @@ const articleSchema = mongoose.Schema({
         maxLength: 100,
         required: [ true, 'You need a title!']
     },
+    bg_image: {
+        type: String,
+        required: [true, 'You need a background image']
+    },
     content:{
         type: String,
         required: [ true, 'You need some content!']
