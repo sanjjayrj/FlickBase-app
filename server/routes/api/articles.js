@@ -6,6 +6,7 @@ const { sortArgsHelper } = require('../../config/helpers')
 
 /// MODEL
 const { Article } = require('../../models/article_model')
+const { Category } = require('../../models/category_model')
 
 // add single article - DONE
 // admin get,patcch,delete single article {draft / public} - DONE
@@ -134,6 +135,27 @@ router.route('/loadmore')
         res.status(400).json({ message: "Error fetching article", error: error })
     }
 })
+
+
+/// CATEGORIES_SCHEMA
+router.route("/categories")
+.get(async(req, res) => {
+    try {
+        const categories = await Category.find();
+        req.status(200).json(categories);
+    }catch(error){
+        res.status(400).json({message: "Error returing categories", error})
+    }
+})
+.post(checkLoggedIn, grantAccess('createAny', 'categories', async(req, res) =>{
+    try{
+        const category = new Category(req.body);
+        await category.save()
+        res.status(200).json(category);
+    }catch(error){
+        res.status(400).json({message:"Error adding new categories", error})
+    }
+}))
 
 module.exports = router;
 
