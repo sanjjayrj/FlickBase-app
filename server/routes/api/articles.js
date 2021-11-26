@@ -106,7 +106,7 @@ router.route('/get_byid/:id')
 .get(async(req,res)=>{
     try{
         const _id = req.params.id;
-        const article = await Article.find({_id:_id,status:'public'});
+        const article = await Article.find({_id:_id,status:'public'}).populate('category');
         if (!article || article.length === 0) {
             return res.status(400).json({ message: "Article not found" })
         }
@@ -126,6 +126,7 @@ router.route('/loadmore')
 
         const articles = await Article
         .find({status:'public'})
+        .populate('category')
         .sort([[sortArgs.sortBy,sortArgs.order]])
         .skip(sortArgs.skip)
         .limit(sortArgs.limit)
@@ -142,12 +143,12 @@ router.route("/categories")
 .get(async(req, res) => {
     try {
         const categories = await Category.find();
-        req.status(200).json(categories);
+        res.status(200).json(categories);
     }catch(error){
         res.status(400).json({message: "Error returing categories", error})
     }
 })
-.post(checkLoggedIn, grantAccess('createAny', 'categories', async(req, res) =>{
+.post(checkLoggedIn, grantAccess('createAny', 'categories'), async(req, res) =>{
     try{
         const category = new Category(req.body);
         await category.save()
@@ -155,7 +156,7 @@ router.route("/categories")
     }catch(error){
         res.status(400).json({message:"Error adding new categories", error})
     }
-}))
+});
 
 module.exports = router;
 

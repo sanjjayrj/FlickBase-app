@@ -5,6 +5,8 @@ import {
     GET_ADMIN_ARTICLES,
     UPDATE_ARTICLE_STATUS,
     CLEAR_CURRENT_ARTICLE,
+    GET_CATEGORIES,
+    ADD_CATEGORY,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
@@ -47,6 +49,15 @@ export const clearCurrentArticle = () => ({
     type: CLEAR_CURRENT_ARTICLE
 })
 
+
+export const getCategories = (categories) => ({
+    type: GET_CATEGORIES,
+    payload: categories
+})
+export const addCategory = (categories) => ({
+    type: ADD_CATEGORY,
+    payload: categories
+})
 /////// notification /////////////
 
 export const errorGlobal = (msg) => ({

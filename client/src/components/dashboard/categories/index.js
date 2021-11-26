@@ -1,11 +1,22 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import AdminLayout from '../../../hoc/adminLayout';
-
+import AddCategories from './add_category'
 import { useDispatch, useSelector } from 'react-redux';
-import AddCategories from './add_category';
+import { getCategories } from '../../../store/actions/article_actions';
+
+
 import { Table, Row, Col } from 'react-bootstrap';
 
+
 const Categories = () => {
+    const articles = useSelector(state => state.articles)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCategories());
+    }, [dispatch])
+
+
     return (
         <AdminLayout section="Categories">
             <Row>
@@ -17,14 +28,18 @@ const Categories = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Name of category</td>
-                            </tr>
+                            {articles.categories ?
+                                articles.categories.map((item) => (
+                                    <tr key={item._id}>
+                                        <td>{item.name}</td>
+                                    </tr>
+                                ))
+                                : null}
                         </tbody>
                     </Table>
                 </Col>
                 <Col>
-                    <AddCategories/>
+                    <AddCategories />
                 </Col>
             </Row>
         </AdminLayout>

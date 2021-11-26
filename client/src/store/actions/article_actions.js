@@ -120,3 +120,30 @@ export const updateArticle = (article, id) => {
         }
     }
 }
+
+export const getCategories = () => {
+    return async(dispatch) => {
+        try {
+            const categories = await axios.get('/api/articles/categories');
+            dispatch(articles.getCategories(categories.data))
+        } catch (error) {
+            dispatch(articles.errorGlobal('Error getting categories!'))
+        }
+    }
+}
+
+export const addCategory = (values) => {
+    return async (dispatch, getState) => {
+        try {
+            const category = await axios.post(`/api/articles/categories`, values, getAuthHeader());
+            let newState = [
+                ...getState().articles.categories,
+                category.data
+            ]
+            dispatch(articles.addCategory(newState));
+            dispatch(articles.successGlobal("New category added!"));
+        } catch (error) {
+            dispatch(articles.errorGlobal('Error adding categories!'))
+        }
+    }
+}

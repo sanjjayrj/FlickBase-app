@@ -4,7 +4,9 @@ import {
     CLEAR_CURRENT_ARTICLE,
     ADD_ARTICLE,
     UPDATE_ARTICLE_STATUS,
-    GET_ADMIN_ARTICLES
+    GET_ADMIN_ARTICLES,
+    GET_CATEGORIES,
+    ADD_CATEGORY
 } from '../types';
 
 export default function articleReducer(state={},action){
@@ -27,6 +29,10 @@ export default function articleReducer(state={},action){
                     docs: action.payload
                 }
             }
+        case GET_CATEGORIES:
+            return {...state, categories: action.payload}
+        case ADD_CATEGORY:
+            return {...state, categories: action.payload}
         default:
             return state
     }

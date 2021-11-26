@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux'
+import { addCategory } from '../../../store/actions/article_actions';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,18 +8,20 @@ import * as Yup from 'yup';
 import {
     TextField,
     Button
-} from '@material-ui/core';
+} from "@material-ui/core"
 
 const AddCategories = () => {
     const dispatch = useDispatch();
+
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues: {name:''},
+        initialValues: { name: '' },
         validationSchema: Yup.object({
             name: Yup.string()
-            .required("Category name required")
+                .required('The name is required')
         }),
-        onSubmit: (values, {resetForm})=>{
+        onSubmit: (values, { resetForm }) => {
+            dispatch(addCategory(values))
             resetForm();
         }
     })
@@ -33,9 +36,9 @@ const AddCategories = () => {
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <TextField
-                        style={{width: '75%'}}
+                        style={{ width: '100%' }}
                         name="name"
-                        label="Enter a category"
+                        label="Enter a name"
                         variant="outlined"
                         {...formik.getFieldProps('name')}
                         {...errorHelper(formik, 'name')}
@@ -46,11 +49,13 @@ const AddCategories = () => {
                     color="primary"
                     type="submit"
                 >
-                    Add Category
+                    Add category
                 </Button>
+
             </form>
         </>
     )
+
 }
 
-export default AddCategories;
+export default AddCategories

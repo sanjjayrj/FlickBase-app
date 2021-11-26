@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import AdminLayout from '../../../hoc/adminLayout';
 import { useFormik, FieldArray, FormikProvider } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdminArticle, updateArticle } from '../../../store/actions/article_actions';
+import { getAdminArticle, updateArticle, getCategories } from '../../../store/actions/article_actions';
 import { validation, formValues } from './validationSchema';
 import Loader from '../../../utils/loader';
 
@@ -70,6 +70,7 @@ const EditArticle = (props) => {
 
     /// edit ///
     useEffect(()=>{
+        dispatch(getCategories())
         dispatch(getAdminArticle(props.match.params.id))
     },[dispatch, props.match.params])
 
@@ -205,6 +206,35 @@ const EditArticle = (props) => {
                             {...errorHelper(formik, 'director')}
                         />
                     </div>
+
+                    <FormControl variant="outlined">
+                        <h5>Select a category</h5>
+                        <Select
+                            name="category"
+                            {...formik.getFieldProps('category')}
+                            error={formik.errors.category && formik.touched.category ? true : false}
+                        >
+                            <MenuItem value=''>
+                                <em>None</em>
+                            </MenuItem>
+                            { articles.categories ?
+                                articles.categories.map((item) => (
+                                    <MenuItem key={item._id} value={item._id}>
+                                        {item.name}
+                                    </MenuItem>
+                                ))
+                                : null}
+                        </Select>
+                        {
+                            formik.errors.category && formik.touched.category ?
+                                <FormHelperText error={true}>
+                                    {formik.errors.category}
+                                </FormHelperText>
+                                : null
+                        }
+                    </FormControl>
+
+                    <Divider className="mt-3 mb-3" />
 
                     <FormControl variant="outlined">
                         <h5>Select a status</h5>
