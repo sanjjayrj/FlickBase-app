@@ -99,6 +99,29 @@ router.route("/admin/paginate")
     }
 })
 
+router.route("/user/search")
+    .post(async (req, res) => {
+        try{
+            if(req.body.keywords == ''){
+                res.status(400).json({message:'No files exist',error})
+            }
+            const re = new RegExp(`${req.body.keywords}`, 'gi');
+            let aggQuery = Article.aggregate([
+                { $match: { status: 'public'}},
+                { $match: { title: {$regex:re}}}
+            ])
+            const limit = 5;
+            const options = {
+                page: req.body.page,
+                limit,
+                sort: { _id: 'desc' }
+            }
+            const articles = await Article.aggregatePaginate(aggQuery, options)
+            res.status(200).json(articles)
+        } catch(error) {
+            res.status(400).json({message:'Error',error})
+        }
+    })
 
 /// NO AUTH REQUIRED
 

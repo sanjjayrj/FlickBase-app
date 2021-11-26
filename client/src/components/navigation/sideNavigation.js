@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-
+import NavSearch from './search';
 import {
     Drawer,
     List,
@@ -27,11 +27,9 @@ const SideDrawer = ({ users, signOutUser }) => {
             />
             <Drawer anchor={'right'} open={state} onClose={() => setState(false)}>
 
-                <form style={{ margin: '20px' }}>
-                    <TextField id="outlined-basic" label="Search movie"
-                        variant="outlined"
-                    />
-                </form>
+                <NavSearch
+                    closeDrawer={() => setState(false)}
+                />
                 <Divider />
                 <List>
                     <ListItem button component={RouterLink} to="/" onClick={() => setState(false)}>

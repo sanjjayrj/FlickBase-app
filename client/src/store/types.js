@@ -8,6 +8,7 @@ export const UPDATE_ARTICLE_STATUS = 'update_article_status';
 export const CLEAR_CURRENT_ARTICLE = 'clear_current_article'
 export const GET_CATEGORIES = 'get_categories';
 export const ADD_CATEGORY = 'add_category';
+export const NAV_SEARCH = 'nav_search';
 
 /// notifications
 export const ERROR_GLOBAL = 'error_global';

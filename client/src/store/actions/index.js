@@ -7,6 +7,7 @@ import {
     CLEAR_CURRENT_ARTICLE,
     GET_CATEGORIES,
     ADD_CATEGORY,
+    NAV_SEARCH,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
@@ -57,6 +58,11 @@ export const getCategories = (categories) => ({
 export const addCategory = (categories) => ({
     type: ADD_CATEGORY,
     payload: categories
+})
+
+export const navSearch = (articles) => ({
+    type: NAV_SEARCH,
+    payload: articles
 })
 /////// notification /////////////
 
