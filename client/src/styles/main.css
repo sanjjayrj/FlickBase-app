@@ -7,8 +7,8 @@ a, a:hover {
 }
 
 .navbar {
-  border-bottom: 5px solid #dbdbdb;
-  background: white;
+  border-bottom: 5px solid #000000;
+  background: yellow;
 }
 .navbar.dash_layout {
   position:relative !important;

@@ -4,6 +4,19 @@ const { checkLoggedIn } = require('../../middleware/auth');
 const { grantAccess } = require('../../middleware/roles');
 const { sortArgsHelper } = require('../../config/helpers')
 
+//
+const formidableMiddleware = require('express-formidable');
+const multer = require('multer');
+const path = require('path');
+require('dotenv').config();
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: `${process.env.CLOUD_NAME}`,
+    api_key: `${process.env.CLOUD_API_KEY}`,
+    api_secret: `${process.env.CLOUD_API_SECRET}`
+});
+
 /// MODEL
 const { Article } = require('../../models/article_model')
 const { Category } = require('../../models/category_model')
@@ -15,10 +28,41 @@ const { Category } = require('../../models/category_model')
 // fetch articles, with pagination
 
 
+/////////// IMAGE UPLOAD ///////////////
+const storage = multer.diskStorage({
+    destination: (req, image, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, image, cb) => {
+        console.log(image);
+        cb(null, image.originalname)
+        //cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+const fileFilter = (req, image, cb) => {
+    if (image.mimetype == 'image/jpeg' || image.mimetype == 'image/jpg' || image.mimetype == 'image/png') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+router.route('/admin/add_image')
+    .post(formidableMiddleware(), async (req, res) =>{
+        try {
+            const upload = await cloudinary.uploader.upload(req.body.image, {
+                public_id: `${Date.now()}`,
+                folder: 'movie_posters'
+            })
+            res.status(200).json(upload.url);
+        } catch(error){
+            res.status(400).json({error});
+        }
+    })
+
 router.route('/admin/add_articles')
     .post(checkLoggedIn, grantAccess('createAny', 'article'), async (req, res) => {
         try {
-            /// run some other code to validate if necessary
             const article = new Article({
                 ...req.body,
                 score: parseInt(req.body.score)

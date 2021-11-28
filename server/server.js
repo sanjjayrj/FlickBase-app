@@ -18,7 +18,6 @@ mongoose.connect(mongoUri,{
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-app.set("view engine", "ejs");
 app.use(checkToken);
 app.use("/api/users",users);
 app.use("/api/articles",articles)

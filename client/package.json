@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "cloudinary": "^1.27.1",
+    "cloudinary-react": "^1.7.0",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "formik": "^2.2.6",
@@ -56,5 +58,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:3001"
+  "proxy": "http://localhost:3001"
 }

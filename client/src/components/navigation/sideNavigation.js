@@ -7,8 +7,7 @@ import {
     Divider,
     ListItem,
     ListItemIcon,
-    ListItemText,
-    TextField
+    ListItemText
 } from '@material-ui/core';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import MailIcon from '@material-ui/icons/Mail';

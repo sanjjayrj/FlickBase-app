@@ -35,13 +35,14 @@ export const getArticle = (id) => {
 export const addArticle = (article) => {
     return async(dispatch) =>{
         try{
+            console.log(article);
             const request = await axios.post(`/api/articles/admin/add_articles`,
             article, getAuthHeader());
 
             dispatch(articles.addArticle(request.data))
             dispatch(articles.successGlobal('Good Obi-Wan'))
         } catch(error) {
-            dispatch(articles.errorGlobal(error.response.data.message))
+            dispatch(articles.errorGlobal(error))
         }
     }
 }

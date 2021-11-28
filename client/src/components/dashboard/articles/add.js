@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addArticle, getCategories } from '../../../store/actions/article_actions';
 import { validation, formValues } from './validationSchema';
 import Loader from '../../../utils/loader';
-
+import { Form } from 'react-bootstrap';
 import WYSIWYG from '../../../utils/forms/wysiwyg';
+import axios from 'axios';
 
 import {
     TextField,
@@ -27,7 +28,7 @@ import AddIcon from '@material-ui/icons/Add';
 const AddArticle = (props) => {
     const dispatch = useDispatch();
     const notifications = useSelector(state => state.notifications)
-    const { categories } = useSelector(state=> state.articles);
+    const { categories } = useSelector(state => state.articles);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editorBlur, setEditorBlur] = useState(false);
     const actorsValue = useRef('');
@@ -37,6 +38,15 @@ const AddArticle = (props) => {
         validationSchema: validation,
         onSubmit: (values, { resetForm }) => {
             setIsSubmitting(true);
+            let formData = new FormData();
+            formData.append("file", values.image);
+            values.bg_image = axios.post(`/api/articles/admin/add_image`, formData, {
+                header: { 'Content-Type': 'multipart/form-data' }
+            }).then(response => {
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
+            })
             dispatch(addArticle(values));
         }
     });
@@ -55,13 +65,13 @@ const AddArticle = (props) => {
     });
 
     useEffect(() => {
-        if(notifications && notifications.success){
+        if (notifications && notifications.success) {
             props.history.push('/dashboard/articles')
         }
-        if(notifications && notifications.error){
+        if (notifications && notifications.error) {
             setIsSubmitting(false)
         }
-    },[notifications,props.history]);
+    }, [notifications, props.history]);
 
     useEffect(() => {
         dispatch(getCategories());
@@ -83,15 +93,27 @@ const AddArticle = (props) => {
                             {...errorHelper(formik, 'title')}
                         />
                     </div>
-                    <div className="form-group">
-                        <TextField
-                            style={{ width: '100%'}}
-                            name="bg_image"
-                            label="Enter movie poster url"
-                            variant="outlined"
-                            {...formik.getFieldProps('bg_image')}
-                            {...errorHelper(formik, 'bg_image')}
-                        />
+
+                    <div className="form">
+                        <Form onSubmit={formik.handleSubmit}>
+                            <Form.Group>
+                                <Form.File
+                                    id="image"
+                                    name="image"
+                                    label="Poster image upload"
+                                    onChange={(event) => {
+                                        formik.setFieldValue("image", event.target.files[0])
+                                    }}
+                                    {...formik.getFieldProps('image')}
+                                    {...errorHelper(formik, 'image')}
+                                />
+                                {
+                                    formik.errors.image && formik.touched.image ?
+                                        <>Error</>
+                                        : null
+                                }
+                            </Form.Group>
+                        </Form>
                     </div>
 
                     <div className="form-group">
@@ -206,13 +228,13 @@ const AddArticle = (props) => {
                             <MenuItem value=''>
                                 <em>None</em>
                             </MenuItem>
-                            { categories ?
+                            {categories ?
                                 categories.map((item) => (
                                     <MenuItem key={item._id} value={item._id}>
                                         {item.name}
                                     </MenuItem>
                                 ))
-                            :null}
+                                : null}
                         </Select>
                         {
                             formik.errors.category && formik.touched.category ?
@@ -222,8 +244,8 @@ const AddArticle = (props) => {
                                 : null
                         }
                     </FormControl>
-                    
-                    <Divider className="mt-3 mb-3"/>
+
+                    <Divider className="mt-3 mb-3" />
 
                     <FormControl variant="outlined">
                         <h5>Select a status</h5>
