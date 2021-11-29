@@ -64,6 +64,7 @@ export const navSearch = (articles) => ({
     type: NAV_SEARCH,
     payload: articles
 })
+
 /////// notification /////////////
 
 export const errorGlobal = (msg) => ({

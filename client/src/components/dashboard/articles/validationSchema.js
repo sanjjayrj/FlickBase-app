@@ -2,7 +2,8 @@ import * as Yup from 'yup';
 
 export const formValues = {
     title: '',
-    image: '',
+    file: '',
+    bg_image: '',
     content: '',
     excerpt: '',
     score: 0,
@@ -16,8 +17,7 @@ export const validation = () => (
     Yup.object({
         title: Yup.string()
             .required('Sorry, the title is required'),
-        image: Yup.mixed()
-            .required("Image is required!!"),
+        file: Yup.string(),
         bg_image: Yup.string(),
         content: Yup.string()
             .required('Sorry, the content is required')

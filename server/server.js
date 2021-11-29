@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const users = require('./routes/api/users');
 const articles = require('./routes/api/articles');
+const files = require('./routes/api/files');
 const { checkToken } = require('./middleware/auth');
 
 const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`;
@@ -20,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(checkToken);
 app.use("/api/users",users);
-app.use("/api/articles",articles)
+app.use("/api/articles",articles);
+app.use("/api/files", files)
 
 app.use(express.static('client/build'));
 if(process.env.NODE_ENV === 'production') {
