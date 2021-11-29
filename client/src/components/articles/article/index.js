@@ -4,22 +4,11 @@ import { getArticle } from '../../../store/actions/article_actions';
 import { clearCurrentArticle } from '../../../store/actions/index';
 import Loader from '../../../utils/loader';
 import ScoreCard from '../../../utils/scoreCard';
-//import { Transformation } from 'cloudinary-react';
 
 const Article = (props) => {
-    // const cloudinary = require('cloudinary').v2;
-    // require('dotenv').config();
-    // cloudinary.config({
-    //     cloud_name: `${process.env.CLOUD_NAME}`,
-    //     api_key: `${process.env.CLOUD_API_KEY}`,
-    //     api_secret: `${process.env.CLOUD_API_SECRET}`
-    // });
     const { current } = useSelector( state => state.articles );
     const dispatch = useDispatch();
-    console.log(current);
-
     useEffect(()=>{
-        /// props.match.params.id
         dispatch(getArticle(props.match.params.id))
     },[dispatch, props.match.params.id])
 
@@ -34,9 +23,7 @@ const Article = (props) => {
             { current ?
                 <div className="article_container">
                     <div className= "image" >
-                        <img alt="poster" src = {current.bg_image}>
-                            {/*<Transformation height="150" width="150" crop="fill"/>*/}
-                        </img>
+                        <img alt="poster" src={current.bg_image.slice(0, 50) +"c_thumb,h_500,w_1100/" + current.bg_image.slice(50)}/>
                     </div>
                     <h1>{current.title}</h1>
                     <div className="mt-3 content">

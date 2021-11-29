@@ -42,7 +42,6 @@ const upload = multer({ storage: storage, fileFilter: fileFilter })
 router.route("/testupload")
     .post(formidableMiddleware(), async (req, res) => {
         try {
-            /// req.files.file.path
             const upload = await cloudinary.uploader.upload(req.files.file.path,
                 {
                     public_id: `${Date.now()}`,

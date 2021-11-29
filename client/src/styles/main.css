@@ -93,7 +93,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .scorecard {
   width: 100%;
   background-color: #a0adb8;
-  color: #fff;
+  color: darkgray;
   margin-top: 50px;
 }
 
