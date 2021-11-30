@@ -17,8 +17,10 @@ export const validation = () => (
     Yup.object({
         title: Yup.string()
             .required('Sorry, the title is required'),
-        file: Yup.string(),
-        bg_image: Yup.string(),
+        file: Yup.string()
+            .required('Please upload movie poster...'),
+        bg_image: Yup.string()
+            .required("Image Url needed, upload pls..."),
         content: Yup.string()
             .required('Sorry, the content is required')
             .min(50, 'That is it? ... write some more'),

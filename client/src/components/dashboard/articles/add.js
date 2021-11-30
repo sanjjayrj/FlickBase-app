@@ -40,7 +40,6 @@ const AddArticle = (props) => {
         validationSchema: validation,
         onSubmit: (values, { resetForm }) => {
             setIsSubmitting(true);
-            console.log(values)
             dispatch(addArticle(values))
         }
     });
@@ -48,7 +47,7 @@ const AddArticle = (props) => {
     const handleSave = (values) => {
         let formData = new FormData();
         formData.append("file", values)
-        /// cloudinary
+        // cloudinary upload
         axios.post('/api/files/testupload', formData, {
             header: { 'content-type': 'multipart/form-data' }
         }).then(response => {

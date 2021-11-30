@@ -7,7 +7,7 @@ a, a:hover {
 }
 
 .navbar {
-  border-bottom: 5px solid #000000;
+  border-bottom: 5px solid #212121FA;
   background: yellow;
 }
 .navbar.dash_layout {
@@ -56,7 +56,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
 /*/////////////  ARTICLE /////////*/
-          
 
 .article_container h1 {
   font-weight: 900;
@@ -72,7 +71,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     background-size: cover !important;
     background-repeat: no-repeat !important;
     width: 100%;
-    height: 500px;
+    height: 600px;
     background-position: top center !important;
   }
 

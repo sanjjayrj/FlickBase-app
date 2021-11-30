@@ -23,7 +23,7 @@ const Article = (props) => {
             { current ?
                 <div className="article_container">
                     <div className= "image" >
-                        <img alt="poster" src={current.bg_image.slice(0, 50) +"c_thumb,h_500,w_1100/" + current.bg_image.slice(50)}/>
+                        <img alt="poster" src={current.bg_image.slice(0, 49) +"c_thumb,h_600,w_1200/" + current.bg_image.slice(49)}/>
                     </div>
                     <h1>{current.title}</h1>
                     <div className="mt-3 content">
