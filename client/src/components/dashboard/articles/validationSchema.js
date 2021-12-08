@@ -8,7 +8,7 @@ export const formValues = {
     excerpt: '',
     score: 0,
     director: '',
-    actors: ['', '', ''],
+    actors: [],
     status: 'draft',
     category: ''
 }
@@ -17,8 +17,7 @@ export const validation = () => (
     Yup.object({
         title: Yup.string()
             .required('Sorry, the title is required'),
-        file: Yup.string()
-            .required('Please upload movie poster...'),
+        file: Yup.string(),
         bg_image: Yup.string()
             .required("Image Url needed, upload pls..."),
         content: Yup.string()

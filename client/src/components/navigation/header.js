@@ -48,6 +48,7 @@ const Header = (props) => {
     return (
         <>
             <nav className={`navbar fixed-top ${layout}`}>
+                
                 <Link style={{ fontFamily: 'Fredoka One' }} to="/"
                     className="navbar-brand d-flex align-items-center"
                 >

@@ -2,6 +2,13 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #424242;
 }
+.logo {
+      background-image: url('popcorn.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
 a, a:hover {
   color: inherit;
 }

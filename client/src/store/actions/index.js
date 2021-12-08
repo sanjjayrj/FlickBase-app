@@ -41,9 +41,9 @@ export const getPaginateArticle = (articles) => ({
     payload: articles
 })
 
-export const updateArticleStatus = (articleS) => ({
+export const updateArticleStatus = (article) => ({
     type: UPDATE_ARTICLE_STATUS,
-    payload: articleS
+    payload: article
 })
 
 export const clearCurrentArticle = () => ({

@@ -112,6 +112,7 @@ export const getAdminArticle = (id) => {
 export const updateArticle = (article, id) => {
     return async ( dispatch) => {
         try{
+            console.log(article);
             const newArticle = await axios.patch(`/api/articles/admin/${id}`,
             article, getAuthHeader());
             dispatch(articles.getArticle(newArticle.data));

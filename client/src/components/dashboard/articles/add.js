@@ -121,6 +121,15 @@ const AddArticle = (props) => {
                             </Form.Group>
                         </Form>
                     </div>
+                    <div className='form-group'>
+                        <TextField
+                            style={{ width: '100%' }}
+                            name="bg_image"
+                            label="Image URL"
+                            variant="filled"
+                            {...formik.getFieldProps('bg_image')}
+                        />
+                    </div>
 
                     <div className="form-group">
                         <WYSIWYG
@@ -275,7 +284,7 @@ const AddArticle = (props) => {
                         variant="contained"
                         color="primary"
                         type="submit"
-                    // disabled={false}
+                        disabled={false}
                     >
                         Add article
                     </Button>

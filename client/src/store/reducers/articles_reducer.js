@@ -28,7 +28,8 @@ export default function articleReducer(state={},action){
                 adminArticles:{
                     ...state.adminArticles,
                     docs: action.payload
-                }
+                },
+                success: true
             }
         case GET_CATEGORIES:
             return {...state, categories: action.payload}

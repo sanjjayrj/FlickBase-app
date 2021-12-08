@@ -15,8 +15,6 @@ const { Category } = require('../../models/category_model')
 // fetch articles, with pagination
 
 
-/////////// IMAGE UPLOAD ///////////////
-
 router.route('/admin/add_articles')
     .post(checkLoggedIn, grantAccess('createAny', 'article'), async (req, res) => {
         try {
