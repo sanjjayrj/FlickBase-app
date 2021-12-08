@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import SideDrawer from './sideNavigation';
 
+import logo from '../../styles/film-icon.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearNotification } from '../../store/actions/index';
 import { signOut } from '../../store/actions/users_actions';
@@ -48,7 +49,7 @@ const Header = (props) => {
     return (
         <>
             <nav className={`navbar fixed-top ${layout}`}>
-                
+                <img src={logo} class="logo" alt="logo"/>
                 <Link style={{ fontFamily: 'Fredoka One' }} to="/"
                     className="navbar-brand d-flex align-items-center"
                 >
