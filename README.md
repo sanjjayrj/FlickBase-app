@@ -1,12 +1,14 @@
-# FlickBase test app
+# [Movie Review System]
 
-FlickBase is a ReactJS-powered webApp hosted on heroku, this is a test website. It's database is managed using mongoDB.
+This is a ReactJS-powered webApp hosted on heroku. MongoDB is used to manage it's posts and user information. It also take the help of Cloudinary, a SaaS provider to manage images.
 
 ## Features
 
 - Registering user.
 - Sign-in, sign-out capabilities.
-- Post articles.
+- Viewing articles
+- ADMIN PRIVILEGES
+- Post movie reviews.
 - Removing, posting and editing articles.
 - Updating user profile.
 
@@ -18,6 +20,7 @@ FlickBase took the help following open source projects to make:
 - [node.js] - evented I/O for the backend
 - [Express] - fast node.js network app framework
 - [MongoDB] - db management
+- [Cloudinary] - Image uploading and downloading
 
 ## Installation
 
@@ -45,8 +48,10 @@ localhost:3000
 
 Hosted website can be found [here]
 
-   [here]: <https://test-first-appx.herokuapp.com/>
+   [here]: <https://first-movie-review.herokuapp.com/>
+   [Movie Review System]: <https://first-movie-review.herokuapp.com/>
    [node.js]: <http://nodejs.org>
    [MongoDB]: <https://www.mongodb.com/>
    [express]: <http://expressjs.com>
    [ReactJS]: <http://reactjs.org>
+   [Cloudinary]: <https://cloudinary.com/>
